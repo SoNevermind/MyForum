@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Форум </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"/>
+<div class="container mt-5">
+    <h1>Форум</h1>
+    <div th:each="element : ${posts}" class="alert alert-info mt-2"> <!-- Перебор всех постов из БД -->
+        <h3 th:text="${element.name}"/> <!-- Вывод имени человека, написавший статью в форум -->
+        <p th:text="${element.title}"/> <!-- Сама статья -->
+        <a th:href="'/forum/' + ${element.id}" class="btn btn-warning">Ответ</a> <!-- Ответ другого пользователя на статью -->
+    </div>
+</div>
+<footer th:insert="blocks/footer :: footer"/>
+</body>
+</html>

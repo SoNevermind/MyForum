@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Блог </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"/>
+<div class="container mt-5">
+    <div th:each="element : ${post}" class="alert alert-info mt-2"> <!-- Перебор всех постов из БД -->
+        <h1 th:text="${element.name}"/> <!-- Вывод имени -->
+        <p th:text="${element.title}"/> <!-- Статья -->
+        <p><b>Ответы: </b></p> <!-- Ответ -->
+        <form action="/forum/add" method="post"> <!-- Форма ответа -->
+            <input type="text" name="name" placeholder="Введите имя" class="form-control"><br>
+            <input type="text" name="title" placeholder="Введите ответ" class="form-control"><br>
+            <button type="submit" name="answer" class="btn btn-success">Добавить ответ</button><br>
+        </form>
+    </div>
+</div>
+<footer th:insert="blocks/footer :: footer"/>
+</body>
+</html>
